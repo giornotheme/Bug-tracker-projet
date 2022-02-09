@@ -9,17 +9,17 @@ public class ModelEmployee {
     this.page = page;
   }
 
-  public void navigate() {
-    page.navigate("https://h.hr.dmerej.info/");
+  public void navigate(String text) {
+    page.navigate(text);
   }
 
-  public void search(String text) {
+  public void AddEmployeeWithMod(String text) {
       page.fill("input[name='name']",text);
-      page.fill("input[name='email']",text);
+      page.fill("input[name='email']",text+"@");
       page.fill("input[name='address_line1']",text);
       page.fill("input[name='address_line2']",text);
       page.fill("input[name='city']",text);
-      page.fill("input[name='zip_code']","    ");
+      page.fill("input[name='zip_code']",""+29);
       page.fill("input[name='hiring_date']",text);
       page.fill("input[name='job_title']",text);
       page.click("text='Add'");

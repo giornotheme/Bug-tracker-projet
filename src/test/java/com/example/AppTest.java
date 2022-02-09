@@ -70,23 +70,35 @@ public class AppTest
     //with out Page Object Model
     @Test 
     public void AddEmployee() {
-       
+        page.navigate("https://h.hr.dmerej.info/employees");
+        int a = page.querySelectorAll("text=Eric Dupond@").size();
+        page.navigate("https://h.hr.dmerej.info/add_employee");
         page.click("text='Add new employee'");
         String name = "Eric Dupond";
-        
         page.locator("input[name='name']").fill(name);
-        page.locator("input[name='email']").fill(name);
+        page.locator("input[name='email']").fill(name+"@");
         page.locator("input[name='address_line1']").fill(name);
         page.locator("input[name='address_line2']").fill(name);
         page.locator("input[name='city']").fill(name);
-        page.locator("input[name='zip_code']").fill("    ");
+        page.locator("input[name='zip_code']").fill(""+29);
         page.locator("input[name='hiring_date']").fill(name);
         page.locator("input[name='job_title']").fill(name);
         page.click("text='Add'");
-        int a = page.querySelectorAll(".btn btn-danger").size();
-        System.out.println(a);
-        System.out.println(page.title());
+        int b = page.querySelectorAll("text=Eric Dupond@").size();
+        assertEquals(b, a+1);
 
+    }
+
+    @Test
+    public void addEmployeeWithModel(){
+        String text = "Jean Hugue";
+        ModelEmployee modelEmployee = new ModelEmployee(page);
+        modelEmployee.navigate("https://h.hr.dmerej.info/employees");
+        int a = page.querySelectorAll("text="+text+"@").size();
+        modelEmployee.navigate("https://h.hr.dmerej.info/add_employee");
+        modelEmployee.AddEmployeeWithMod(text);
+        int b = page.querySelectorAll("text="+text+"@").size();
+        assertEquals(b, a+1);
     }
 // FIN DES BOUTONS DE BASE
 

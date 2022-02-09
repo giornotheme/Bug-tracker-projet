@@ -15,7 +15,7 @@ public class App {
         for(int i = 0; i< 3; i++)
         {
             page.click("text='Add new employee'");
-            String name = "Jean Masturbin" + i;
+            String name = "Quentin Ygorra" + i;
             page.locator("input[name='name']").fill(name);
             page.locator("input[name='email']").fill(name);
             page.locator("input[name='address_line1']").fill(name);
